@@ -136,14 +136,12 @@ export default function Home() {
             </div>
 
             <div className="relative">
-              {/* Placeholder for an illustration or live demo embed */}
               <div className="w-full h-80 rounded-xl bg-gradient-to-br from-blue-50 to-teal-50 border p-6 flex items-center justify-center">
                 <div className="text-center">
                   <div className="w-48 h-32 bg-white rounded-md shadow flex items-center justify-center text-sm text-gray-400">Demo Preview</div>
                   <div className="mt-4 text-sm text-gray-500">Interactive demos live inside each workflow page.</div>
                 </div>
               </div>
-              {/* Decorative shapes */}
               <div className="absolute -left-8 -bottom-8 w-40 h-40 rounded-full bg-blue-100 opacity-60 blur-3xl" />
               <div className="absolute -right-12 top-8 w-28 h-28 rounded-full bg-teal-100 opacity-60 blur-2xl" />
             </div>
