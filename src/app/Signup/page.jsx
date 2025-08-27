@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from "react";
 import { GoogleAuthProvider, signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore"; // Use ES module imports
-import { auth, db } from "../../../firebase"; // Confirm this path is correct
+import { doc, getDoc, setDoc } from "firebase/firestore"; 
+import { auth, db } from "../../../firebase";
 import { useRouter } from "next/navigation";
 
 const provider = new GoogleAuthProvider();
@@ -73,8 +73,6 @@ export default function SignUpPage() {
         console.error('Google sign-up error:', error);
       });
   };
-
-  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-teal-50 px-6">
@@ -155,7 +153,7 @@ export default function SignUpPage() {
         <div className="space-y-3">
           <button
             className="w-full py-3 border rounded-lg flex items-center justify-center gap-2 hover:bg-gray-50 cursor-pointer"
-            onClick={handleGoogleSignUp} // Attach onClick to the button
+            onClick={handleGoogleSignUp} 
           >
             <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" className="w-5 h-5" />
             <span className="text-black/50">Sign up with Google</span>

@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from "react";
-import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { auth, db } from "../../../firebase";
 import { useRouter } from "next/navigation";
@@ -54,8 +54,34 @@ export default function LoginPage() {
                 router.push('/');
             })
         .catch((error) => {
-            console.error("Google sign-in error:", error);
+            alert("Google sign-in error:", error);
         });
+    };
+
+    const handleResetPassword = () => {
+        if (!email) {
+            alert("Please enter your email address.");
+            return;
+        }
+        alert("Sending password reset email...");
+
+        sendPasswordResetEmail(auth, email)
+            .then(() => {
+                alert("A password reset email has been sent to your inbox. Please check your email.");
+                setEmail("");
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                let errorMessage = error.message;
+
+                if (errorCode === 'auth/user-not-found') {
+                    errorMessage = 'The email address you entered is not registered.';
+                } else if (errorCode === 'auth/invalid-email') {
+                    errorMessage = 'The email address is not valid.';
+                }
+
+                alert(`Error: ${errorMessage}`);
+            });
     };
     
     return (
@@ -99,7 +125,7 @@ export default function LoginPage() {
                 <input type="checkbox" className="rounded" />
                 <span className="text-black/50">Remember me</span>
                 </label>
-                <a href="#" className="text-teal-600 hover:underline">Forgot password?</a>
+                <a className="text-teal-600 hover:underline cursor-pointer" onClick={handleResetPassword}>Forgot password?</a>
             </div>
 
             <button
